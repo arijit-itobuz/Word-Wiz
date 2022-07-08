@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-
 export default function TextForm(props) {
   const [text, setText] = useState('')
 
@@ -17,19 +16,25 @@ export default function TextForm(props) {
   const uppercase = () => {
     // console.log('uppercase');
     setText(text.toUpperCase())
+    props.showAlert1500('Text changed to uppercase', 'success')
+
 
   }
   const lowercase = () => {
     setText(text.toLowerCase())
+    props.showAlert1500('Text changed to lowercase', 'success')
 
   }
   const copy = () => {
     let myBox = document.getElementById('myBox')
     myBox.select()                                                                     // for selection highlight
     navigator.clipboard.writeText(myBox.value)
+
+    props.showAlert1500('Text has been copied', 'success')
   }
   const removeSpaces = () => {
     setText(text.split(/\s+/gi).join(' '))
+    props.showAlert1500('Spaces has been removed', 'success')
   }
 
 
@@ -48,7 +53,7 @@ export default function TextForm(props) {
       <div className={`container my-3 p-3 border border-dark rounded-3 bg-${props.mode} text-${props.altMode}`}>
         <h5>Your text summary</h5>
         <p>{text.replace(/\n/g, ' ').split(' ').filter(value => value !== '').length} words, {text.trim().length} characters</p>
-        <p>Time to read - {(text.replace(/\n/g, ' ').split(' ').filter(value => value !== '').length)*0.08} min</p>
+        <p>Time to read - {(text.replace(/\n/g, ' ').split(' ').filter(value => value !== '').length) * 0.08} min</p>
         <h5>Preview</h5>
         <p>{text === '' ? '...Enter your text above' : text}</p>
       </div>

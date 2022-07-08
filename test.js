@@ -1,5 +1,11 @@
 
 
-let str = 'Lorem ipsum          dolor sit amet'
+let str = "lorem12qwewqewqewqe"
 
-console.log(str.split(' '));
+const capitalize = (str) => {
+    let _str = str.toLowerCase()
+    return _str.charAt(0) + _str.slice(1)
+}
+
+console.log(capitalize(str));
+

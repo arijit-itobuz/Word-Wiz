@@ -22,11 +22,9 @@ export default function Navbar(props) {
           </ul>
           <form className="d-flex" role="search">
             <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleTheme} />
-              <label className={`form-check-label text-${props.altMode}`} htmlFor="flexSwitchCheckDefault">Theme</label>
+              <input className="form-check-input" type="checkbox" role="switch" id="themeTogggleSwitch" onClick={props.toggleTheme}/>
+              <label className={`form-check-label text-${props.altMode}`} htmlFor="themeTogggleSwitch"><i className="bi bi-moon-stars-fill"></i></label>
             </div>
-            {/* <input className="form-control me-2 bg-dark" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-light" type="submit">Search</button> */}
           </form>
         </div>
       </div>
