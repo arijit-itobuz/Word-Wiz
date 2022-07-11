@@ -4,12 +4,19 @@ import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm'
 import Alert from './components/Alert'
-// import Theme from './components/Theme';
+import Theme from './components/Theme';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  // Link
+} from "react-router-dom";
 
 
 function App() {
   const [mode, setMode] = useState('light')
   const [altMode, setAltMode] = useState('dark')
+  const [themeIcon, setThemeIcom] = useState('bi-moon-stars-fill')
   const [alert, setAlert] = useState(null)
 
   const toggleTheme = () => {
@@ -19,6 +26,7 @@ function App() {
       document.body.style.backgroundColor = '#424242'
       showAlert3000('Dark mode has been set', 'success')
       document.title = 'My React App - DarkMode'
+      setThemeIcom('bi-sun-fill')
     }
     else {
       setMode('light')
@@ -26,6 +34,7 @@ function App() {
       document.body.style.backgroundColor = '#ffffff'
       showAlert3000('Light mode has been set', 'success')
       document.title = 'My React App - LightMode'
+      setThemeIcom('bi-moon-stars-fill')
     }
   }
 
@@ -51,21 +60,27 @@ function App() {
     }, 1500);
   }
   return (
-    <>
-      <header>
-        <Navbar title="My-React-App" home="Home-React" about="About-React" mode={mode} altMode={altMode} toggleTheme={toggleTheme} />
-        <Alert alert={alert} />
-      </header>
+    <Router>
+      <>
+        <header>
+          <Navbar title="My-React-App" home="Home" about="About" theme={"Theme"} mode={mode} altMode={altMode} toggleTheme={toggleTheme} themeIcon={themeIcon} />
+          <Alert alert={alert} />
+        </header>
 
-      <main>
-        <section>
-          <TextForm heading="Enter the text to analyze" mode={mode} altMode={altMode} showAlert1500={showAlert1500} />
-        </section>
-      </main>
+        {/* <main>
+          <section>
+            <TextForm heading="Enter the text to analyze" mode={mode} altMode={altMode} showAlert1500={showAlert1500} />
+            <Theme />
+          </section>
+        </main> */}
 
-      <footer>
-      </footer>
-    </>
+        <Routes>
+          <Route exact path="/" element={<TextForm heading="Enter the text to analyze" mode={mode} altMode={altMode} showAlert1500={showAlert1500} />} />
+          <Route exact path="/theme" element={<Theme />} />
+        </Routes>
+      </>
+    </Router>
+
   );
 }
 
