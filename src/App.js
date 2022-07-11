@@ -14,6 +14,13 @@ import {
 
 
 function App() {
+
+  // localStorage.setItem('themeKey', 'lightKey')
+
+  // document.getElementById('themeTogggleSwitch').checked = true
+  // console.log(document.getElementById('themeTogggleSwitch').checked);
+  
+
   const [mode, setMode] = useState('light')
   const [altMode, setAltMode] = useState('dark')
   const [themeIcon, setThemeIcom] = useState('bi-moon-stars-fill')
@@ -27,6 +34,8 @@ function App() {
       showAlert3000('Dark mode has been set', 'success')
       document.title = 'My React App - DarkMode'
       setThemeIcom('bi-sun-fill')
+      localStorage.setItem('themeKey', 'darkKey')
+
     }
     else {
       setMode('light')
@@ -35,6 +44,7 @@ function App() {
       showAlert3000('Light mode has been set', 'success')
       document.title = 'My React App - LightMode'
       setThemeIcom('bi-moon-stars-fill')
+      localStorage.setItem('themeKey', 'lightKey')
     }
   }
 
@@ -82,6 +92,7 @@ function App() {
     </Router>
 
   );
+  
 }
 
 export default App;
