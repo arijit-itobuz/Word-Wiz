@@ -14,37 +14,44 @@ import {
 
 
 function App() {
-
-  // localStorage.setItem('themeKey', 'lightKey')
-
-  // document.getElementById('themeTogggleSwitch').checked = true
-  // console.log(document.getElementById('themeTogggleSwitch').checked);
   
-
-  const [mode, setMode] = useState('light')
-  const [altMode, setAltMode] = useState('dark')
-  const [themeIcon, setThemeIcom] = useState('bi-moon-stars-fill')
+  let lightKey = {
+    mode: 'light',
+    altMode: 'dark'
+  }
+  let darkKey = {
+    mode: 'dark',
+    altMode: 'light'
+  }
+  if (localStorage.getItem('themeKey') === null) {
+    localStorage.setItem('themeKey', JSON.stringify(lightKey))
+  }
+  if(JSON.parse(localStorage.getItem('themeKey')).mode === 'light'){
+    document.body.style.backgroundColor = '#ffffff'
+  }
+  else{
+    document.body.style.backgroundColor = '#424242'
+  }
+  
+  const [mode, setMode] = useState(JSON.parse(localStorage.getItem('themeKey')).mode)
+  const [altMode, setAltMode] = useState(JSON.parse(localStorage.getItem('themeKey')).altMode)
   const [alert, setAlert] = useState(null)
 
   const toggleTheme = () => {
     if (mode === 'light' && altMode === 'dark') {
       setMode('dark')
       setAltMode('light')
-      document.body.style.backgroundColor = '#424242'
       showAlert3000('Dark mode has been set', 'success')
-      document.title = 'My React App - DarkMode'
-      setThemeIcom('bi-sun-fill')
-      localStorage.setItem('themeKey', 'darkKey')
+      // document.title = 'Word Wiz - DarkMode'
+      localStorage.setItem('themeKey', JSON.stringify(darkKey))
 
     }
     else {
       setMode('light')
       setAltMode('dark')
-      document.body.style.backgroundColor = '#ffffff'
       showAlert3000('Light mode has been set', 'success')
-      document.title = 'My React App - LightMode'
-      setThemeIcom('bi-moon-stars-fill')
-      localStorage.setItem('themeKey', 'lightKey')
+      // document.title = 'Word Wiz - LightMode'
+      localStorage.setItem('themeKey', JSON.stringify(lightKey))
     }
   }
 
@@ -73,7 +80,7 @@ function App() {
     <Router>
       <>
         <header>
-          <Navbar title="My-React-App" home="Home" about="About" theme={"Theme"} mode={mode} altMode={altMode} toggleTheme={toggleTheme} themeIcon={themeIcon} />
+          <Navbar title="Word Wiz" home="Home" about="About" theme={"Theme"} mode={mode} altMode={altMode} toggleTheme={toggleTheme} themeKey={JSON.parse(localStorage.getItem('themeKey')).mode}/>
           <Alert alert={alert} />
         </header>
 
@@ -92,7 +99,7 @@ function App() {
     </Router>
 
   );
-  
+
 }
 
 export default App;

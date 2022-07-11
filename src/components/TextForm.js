@@ -37,25 +37,24 @@ export default function TextForm(props) {
     props.showAlert1500('Spaces has been removed', 'success')
   }
 
-
   return (
     <>
       <div className={`container my-3 p-3 border border-dark rounded-3 bg-${props.mode} text-${props.altMode}`}>
         <h1>{props.heading}</h1>
         <textarea className={`form-control my-3 bg-${props.mode} text-${props.altMode}`} value={text} onChange={handleOnChange} id="myBox" rows="5" placeholder="...enter text here" spellCheck="false"></textarea>
-        <button className={`btn btn-${props.altMode} me-2`} onClick={reset}>Reset</button>
-        <button className={`btn btn-${props.altMode} me-2`} onClick={copy}>Copy</button>
-        <button className={`btn btn-${props.altMode} me-2`} onClick={uppercase}>Convert to Uppercase</button>
-        <button className={`btn btn-${props.altMode} me-2`} onClick={lowercase}>Convert to Lowercase</button>
-        <button className={`btn btn-${props.altMode} me-2`} onClick={removeSpaces}>Remove Extra Spaces</button>
+        <button disabled={text.length === 0} className={`btn btn-${props.altMode} me-2 my-1`} onClick={reset}>Reset</button>
+        <button disabled={text.length === 0} className={`btn btn-${props.altMode} me-2 my-1`} onClick={copy}>Copy</button>
+        <button disabled={text.length === 0} className={`btn btn-${props.altMode} me-2 my-1`} onClick={uppercase}>Convert to Uppercase</button>
+        <button disabled={text.length === 0} className={`btn btn-${props.altMode} me-2 my-1`} onClick={lowercase}>Convert to Lowercase</button>
+        <button disabled={text.length === 0} className={`btn btn-${props.altMode} me-2 my-1`} onClick={removeSpaces}>Remove Extra Spaces</button>
       </div>
 
       <div className={`container my-3 p-3 border border-dark rounded-3 bg-${props.mode} text-${props.altMode}`}>
-        <h5>Your text summary</h5>
+        <h5 className='fw-bold'>Your text summary</h5>
         <p>{text.replace(/\n/g, ' ').split(' ').filter(value => value !== '').length} words, {text.trim().length} characters</p>
         <p>Time to read - {(text.replace(/\n/g, ' ').split(' ').filter(value => value !== '').length) * 0.08} min</p>
-        <h5>Preview</h5>
-        <p>{text === '' ? '...Enter your text above' : text}</p>
+        <h5 className='fw-bold'>Preview</h5>
+        <p>{text === '' ? 'Nothing to preview' : text}</p>
       </div>
     </>
   )

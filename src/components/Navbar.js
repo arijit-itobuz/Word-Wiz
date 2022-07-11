@@ -9,7 +9,8 @@ export default function Navbar(props) {
     <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
         {/* <a> will reload the page */}
-        <a className="navbar-brand" href="/">{props.title}</a>
+        <img src="./logo192.png" alt="logo" height="40" />
+        <a className="navbar-brand fw-bold fs-4 ms-2 me-4" href="/">{props.title}</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -28,8 +29,8 @@ export default function Navbar(props) {
           </ul>
           <form className="d-flex" role="search">
             <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" role="switch" id="themeTogggleSwitch" onClick={props.toggleTheme}/>
-              <label className={`form-check-label text-${props.altMode}`} htmlFor="themeTogggleSwitch"><i className={`bi ${props.themeIcon}`}></i></label>
+              <input className="form-check-input" type="checkbox" role="switch" id="themeTogggleSwitch" onClick={props.toggleTheme} checked={props.themeKey === 'light' ? false : true} onChange={e => { }} />
+              <label className={`form-check-label text-${props.altMode}`} htmlFor="themeTogggleSwitch"><i className={`bi ${props.themeKey === 'light' ? 'bi-moon-stars-fill' : 'bi-sun-fill'}`}></i></label>
             </div>
           </form>
         </div>
