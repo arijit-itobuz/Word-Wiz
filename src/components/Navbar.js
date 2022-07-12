@@ -9,7 +9,7 @@ export default function Navbar(props) {
     <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
         {/* <a> will reload the page */}
-        <img src="./logo192.png" alt="logo" height="40" />
+        <img src="/logo192.png" alt="logo" height="40" />
         <a className="navbar-brand fw-bold fs-4 ms-2 me-4" href="/">{props.title}</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@ export default function Navbar(props) {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               {/* /<a> will reload the page, use link */}
-              <Link className="nav-link active" aria-current="page" to="/">{props.home}</Link>
+              <Link className="nav-link" to="/">{props.home}</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">{props.about}</Link>
@@ -50,3 +50,6 @@ Navbar.defaultProps = {
   home: "set-home-here",
   about: "set-about-here"
 }
+
+
+// to do active class link

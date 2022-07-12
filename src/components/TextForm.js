@@ -40,7 +40,7 @@ export default function TextForm(props) {
   return (
     <>
       <div className={`container my-3 p-3 border border-dark rounded-3 bg-${props.mode} text-${props.altMode}`}>
-        <h1>{props.heading}</h1>
+        <h1 className='fw-bold'>{props.heading}</h1>
         <textarea className={`form-control my-3 bg-${props.mode} text-${props.altMode}`} value={text} onChange={handleOnChange} id="myBox" rows="5" placeholder="...enter text here" spellCheck="false"></textarea>
         <button disabled={text.length === 0} className={`btn btn-${props.altMode} me-2 my-1`} onClick={reset}>Reset</button>
         <button disabled={text.length === 0} className={`btn btn-${props.altMode} me-2 my-1`} onClick={copy}>Copy</button>
@@ -51,8 +51,8 @@ export default function TextForm(props) {
 
       <div className={`container my-3 p-3 border border-dark rounded-3 bg-${props.mode} text-${props.altMode}`}>
         <h5 className='fw-bold'>Your text summary</h5>
-        <p>{text.replace(/\n/g, ' ').split(' ').filter(value => value !== '').length} words, {text.trim().length} characters</p>
-        <p>Time to read - {(text.replace(/\n/g, ' ').split(' ').filter(value => value !== '').length) * 0.08} min</p>
+        <p>{text.replace(/\n/gi, ' ').split(' ').filter(value => value !== '').length} words, {text.trim().length} characters</p>
+        <p>Time to read - {(text.split(/\s+/gi).filter(value => value !== '').length) * 0.08} min</p>
         <h5 className='fw-bold'>Preview</h5>
         <p>{text === '' ? 'Nothing to preview' : text}</p>
       </div>

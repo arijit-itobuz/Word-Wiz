@@ -50,3 +50,7 @@
 label {
   cursor: pointer;
 }
+
+.active{
+  background-color: red !important;
+}

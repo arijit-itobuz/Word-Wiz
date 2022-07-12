@@ -1,20 +1,21 @@
 // import logo from './logo.svg';
 import React, { useState } from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import TextForm from './components/TextForm'
-import Alert from './components/Alert'
-import Theme from './components/Theme';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   // Link
 } from "react-router-dom";
+import Navbar from './components/Navbar';
+import Alert from './components/Alert'
+import TextForm from './components/TextForm'
+import About from './components/About';
+import Theme from './components/Theme';
 
 
 function App() {
-  
+
   let lightKey = {
     mode: 'light',
     altMode: 'dark'
@@ -26,13 +27,13 @@ function App() {
   if (localStorage.getItem('themeKey') === null) {
     localStorage.setItem('themeKey', JSON.stringify(lightKey))
   }
-  if(JSON.parse(localStorage.getItem('themeKey')).mode === 'light'){
+  if (JSON.parse(localStorage.getItem('themeKey')).mode === 'light') {
     document.body.style.backgroundColor = '#ffffff'
   }
-  else{
+  else {
     document.body.style.backgroundColor = '#424242'
   }
-  
+
   const [mode, setMode] = useState(JSON.parse(localStorage.getItem('themeKey')).mode)
   const [altMode, setAltMode] = useState(JSON.parse(localStorage.getItem('themeKey')).altMode)
   const [alert, setAlert] = useState(null)
@@ -80,7 +81,7 @@ function App() {
     <Router>
       <>
         <header>
-          <Navbar title="Word Wiz" home="Home" about="About" theme={"Theme"} mode={mode} altMode={altMode} toggleTheme={toggleTheme} themeKey={JSON.parse(localStorage.getItem('themeKey')).mode}/>
+          <Navbar title="Word Wiz" home="Home" about="About" theme={"Theme"} mode={mode} altMode={altMode} toggleTheme={toggleTheme} themeKey={JSON.parse(localStorage.getItem('themeKey')).mode} />
           <Alert alert={alert} />
         </header>
 
@@ -93,6 +94,7 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={<TextForm heading="Enter the text to analyze" mode={mode} altMode={altMode} showAlert1500={showAlert1500} />} />
+          <Route exact path='/about' element={<About mode={mode} altMode={altMode} />} />
           <Route exact path="/theme" element={<Theme />} />
         </Routes>
       </>
